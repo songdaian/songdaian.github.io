@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daian Song - Game Engineering Portfolio</title>
+    <title>Daian Song | Game Engine & Graphics Programming Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Daian Song, a Game Engineering and Graphics Programming specialist. Featuring projects in DirectX 12, Software Rasterization, Physics-based Animation (PBD/XPBD), and Ray Tracing.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
@@ -270,11 +272,32 @@
                 </div>
 
                 <div class="media-grid">
-                    <video controls
-                        style="width: 100%; height: 100%; min-height: 250px; border-radius: 12px; background-color: #000; object-fit: cover;">
-                        <source src="video/CGDemo.mp4" type="video/mp4">
-                        您的浏览器不支持视频播放。
-                    </video>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <img src="pic/Scene.png" alt="Overall Scene"
+                            style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
+                            onmouseover="this.style.transform='scale(1.02)'"
+                            onmouseout="this.style.transform='scale(1)'">
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">整体场景展示</p>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <img src="pic/Animation.png" alt="Animation System"
+                            style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
+                            onmouseover="this.style.transform='scale(1.02)'"
+                            onmouseout="this.style.transform='scale(1)'">
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">动画系统</p>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <img src="pic/ParticleSystem.png" alt="Particle System"
+                            style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
+                            onmouseover="this.style.transform='scale(1.02)'"
+                            onmouseout="this.style.transform='scale(1)'">
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">粒子系统</p>
+                    </div>
+                    <a href="video/CGDemo.mp4" download class="placeholder"
+                        style="border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4);">
+                        <span class="placeholder-icon">▶️</span>
+                        <span style="color: #fff; font-weight: 600;">点击下载演示视频 (MP4)</span>
+                    </a>
                     <a href="docs/CGDocs.pdf" target="_blank" class="placeholder"
                         style="border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4);">
                         <span class="placeholder-icon">📄</span>
@@ -284,7 +307,71 @@
             </section>
 
             <section class="project-section">
-                <h2 class="project-title">2. 软件光栅化器加速</h2>
+                <h2 class="project-title">2. 离线路径追踪器</h2>
+                <p class="project-desc">
+                    一个通过路径追踪模拟光线传输的渲染器。系统支持基于微表面理论的导体等材质，并采用启发式表面积 (SAH) 构建的 BVH 加速结构，支持重要性采样环境贴图，大幅提升了复杂场景的渲染效率。
+                </p>
+
+                <div class="feature-highlight">
+                    <h3 class="feature-title">✨ 核心亮点：支持多种材质，使用 MIS (多重重要性采样)，使用 SAH (启发式表面积) 构建的BVH 加速结构</h3>
+                    <p style="color: var(--text-muted);">
+                        为了解决直接光源采样与 BSDF 采样在不同粗糙度下的高方差问题，渲染器采用了多重重要性采样 (MIS) 技术，平衡两种采样策略的权重，从而降低了渲染过程中的噪点。此外，BVH 加速结构采用
+                        SAH (Surface Area Heuristic) 算法进行分割，使得渲染复杂室内场景时的遍历开销降低。
+                    </p>
+                </div>
+
+                <div class="media-grid">
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <img src="pic/BRdn.png" alt="Bathroom Scene"
+                            style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
+                            onmouseover="this.style.transform='scale(1.02)'"
+                            onmouseout="this.style.transform='scale(1)'">
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">Bathroom 场景</p>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <img src="pic/MaterialsScene.png" alt="Materials Scene"
+                            style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
+                            onmouseover="this.style.transform='scale(1.02)'"
+                            onmouseout="this.style.transform='scale(1)'">
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">
+                            材质展示场景</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="project-section">
+                <h2 class="project-title">3. 基于 PBD 与 XPBD 的高性能布料模拟引擎</h2>
+                <p class="project-desc">
+                    开发了一款基于位置动力学 (Position Based Dynamics, PBD) 及扩展版本 (Extended PBD, XPBD)
+                    的实时布料模拟系统。与传统的力学求解器（如隐式欧拉方法）相比，PBD 通过直接在位置层面迭代求解几何约束，确保了模拟过程的无条件稳定性，消除了由于大步长导致的系统崩溃问题。
+                </p>
+
+                <div class="feature-highlight">
+                    <h3 class="feature-title">🧵 核心亮点：XPBD 柔顺度控制</h3>
+                    <p style="color: var(--text-muted);">
+                        传统的 PBD 算法中，材质的刚度（Stiffness）会受到迭代次数和时间步长的严重影响，导致难以进行物理精准的参数调节。项目中引入了 XPBD
+                        算法，通过将物理刚度转化为柔顺度（Compliance）并引入拉格朗日乘子，实现了刚度与迭代次数的完全解耦。
+                    </p>
+                </div>
+
+                <div class="media-grid">
+                    <video controls
+                        style="width: 100%; height: 100%; min-height: 250px; border-radius: 12px; background-color: #000; object-fit: cover;">
+                        <source src="video/clothDemo.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                    <!-- 暂无项目文档 -->
+                    <!--
+                <div class="placeholder">
+                    <span class="placeholder-icon">📄</span>
+                    <span>[在此处链接相关论文、文档或代码库]</span>
+                </div>
+                -->
+                </div>
+            </section>
+
+            <section class="project-section">
+                <h2 class="project-title">4. 软件光栅化器加速</h2>
                 <p class="project-desc">
                     针对现代多核 CPU 进行深度优化的软件光栅化器。通过引入 AVX2 SIMD 指令集、数据结构重构 (SoA)以及基于工作窃取 (Work-Stealing) 算法的 Tile-based
                     多线程渲染架构，大幅突破了内存带宽和同步开销的瓶颈。
@@ -298,7 +385,7 @@
                     </p>
 
                     <div class="apple-speedup-container">
-                        <div class="speedup-header">最高 6 倍的渲染性能飞跃</div>
+                        <div class="speedup-header">最高 6 倍的渲染性能提升</div>
                         <p style="color: var(--text-muted); margin-bottom: 20px;">轻量级场景下，向量化计算带来的指令级并行收益。</p>
 
                         <div class="bar-group">
@@ -333,37 +420,6 @@
                         <span class="placeholder-icon">📄</span>
                         <span style="color: #fff; font-weight: 600;">点击查看 / 下载项目文档 (PDF)</span>
                     </a>
-                </div>
-            </section>
-
-            <section class="project-section">
-                <h2 class="project-title">3. 基于 PBD 与 XPBD 的高性能布料模拟引擎</h2>
-                <p class="project-desc">
-                    开发了一款基于位置动力学 (Position Based Dynamics, PBD) 及扩展版本 (Extended PBD, XPBD)
-                    的实时布料模拟系统。与传统的力学求解器（如隐式欧拉方法）相比，PBD 通过直接在位置层面迭代求解几何约束，确保了模拟过程的无条件稳定性，彻底消除了由于大步长导致的系统崩溃问题。
-                </p>
-
-                <div class="feature-highlight">
-                    <h3 class="feature-title">🧵 核心亮点：XPBD 柔顺度控制与无条件稳定</h3>
-                    <p style="color: var(--text-muted);">
-                        传统的 PBD 算法中，材质的刚度（Stiffness）会受到迭代次数和时间步长的严重影响，导致难以进行物理精准的参数调节。项目中引入了 XPBD
-                        算法，通过将物理刚度转化为柔顺度（Compliance）并引入拉格朗日乘子，实现了刚度与迭代次数的完全解耦。这不仅保证了不同帧率下的视觉一致性，还能够极其精准地模拟从丝绸到粗糙皮革等不同材质的拉伸和弯曲阻力。
-                    </p>
-                </div>
-
-                <div class="media-grid">
-                    <video controls
-                        style="width: 100%; height: 100%; min-height: 250px; border-radius: 12px; background-color: #000; object-fit: cover;">
-                        <source src="video/clothDemo.mp4" type="video/mp4">
-                        您的浏览器不支持视频播放。
-                    </video>
-                    <!-- 暂无项目文档 -->
-                    <!--
-                <div class="placeholder">
-                    <span class="placeholder-icon">📄</span>
-                    <span>[在此处链接相关论文、文档或代码库]</span>
-                </div>
-                -->
                 </div>
             </section>
         </div>
