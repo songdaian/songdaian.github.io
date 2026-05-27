@@ -2,11 +2,16 @@
 <html lang="zh-CN">
 
 <head>
+    <script>
+        // Set language from localStorage early to prevent flash of content
+        const savedLang = localStorage.getItem('preferred-lang') || 'zh-CN';
+        document.documentElement.setAttribute('lang', savedLang);
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daian Song | Game Engine & Graphics Programming Portfolio</title>
+    <title>宋岱桉 | 游戏引擎与图形编程作品集</title>
     <meta name="description"
-        content="Portfolio of Daian Song, a Game Engineering and Graphics Programming specialist. Featuring projects in DirectX 12, Software Rasterization, Physics-based Animation (PBD/XPBD), and Ray Tracing.">
+        content="宋岱桉的游戏引擎与图形编程作品集。展示了 DirectX 12 渲染引擎、物理布料模拟 (PBD/XPBD)、离线路径追踪器、软件光栅化器加速等项目。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
@@ -80,6 +85,14 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
             letter-spacing: 5px;
+        }
+
+        h1.lang-en {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
         }
 
         .subtitle {
@@ -240,34 +253,103 @@
             color: var(--text-muted);
             font-size: 0.9rem;
         }
+
+        /* Language Toggle Styling */
+        html:not([lang="en"]) .lang-en {
+            display: none !important;
+        }
+        html[lang="en"] .lang-zh {
+            display: none !important;
+        }
+
+        .lang-switch-container {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 1000;
+            background: rgba(21, 21, 22, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .lang-switch-container:hover {
+            border-color: rgba(41, 151, 255, 0.4);
+            box-shadow: 0 4px 30px rgba(41, 151, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            outline: none;
+            user-select: none;
+        }
+
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: rgba(255, 255, 255, 0.8);
+        }
     </style>
 </head>
 
 <body>
+    <div class="lang-switch-container">
+        <button class="lang-btn" id="lang-btn-zh" onclick="setLanguage('zh-CN')">中</button>
+        <button class="lang-btn" id="lang-btn-en" onclick="setLanguage('en')">EN</button>
+    </div>
     <canvas id="kaleidoscope"></canvas>
     <div class="content-wrapper">
 
         <header>
-            <div class="welcome-text">Welcome to my portfolio</div>
-            <h1>宋岱桉</h1>
+            <div class="welcome-text lang-zh">欢迎来到我的作品集</div>
+            <div class="welcome-text lang-en">Welcome to my portfolio</div>
+            <h1 class="lang-zh">宋岱桉</h1>
+            <h1 class="lang-en">Daian Song</h1>
             <p class="subtitle">Game Engineering & Graphics Programming</p>
         </header>
 
         <div class="container">
             <section class="project-section">
-                <h2 class="project-title">1. DirectX 12 渲染引擎与 3D 追逐游戏</h2>
-                <p class="project-desc">
+                <h2 class="project-title lang-zh">1. DirectX 12 渲染引擎与 3D 追逐游戏</h2>
+                <h2 class="project-title lang-en">1. DirectX 12 Rendering Engine & 3D Chase Game</h2>
+                <p class="project-desc lang-zh">
                     一款基于 DirectX 12 开发的第一人称 3D
                     追逐游戏，展示了多个实时渲染技术的综合应用。游戏包含数据驱动的加载管线、实例化渲染（用于大规模草地和树木的生成）、计算着色器驱动的粒子系统、地形系统、动态骨骼动画（带交叉淡入淡出），以及基于 AABB
                     的碰撞检测机制。
                 </p>
+                <p class="project-desc lang-en">
+                    A first-person 3D chase game developed with DirectX 12, showcasing the integrated application of multiple real-time rendering techniques. The game features a data-driven loading pipeline, instanced rendering (for large-scale grass and trees), a compute-shader-driven particle system, a terrain system, dynamic skeletal animation with cross-fading, and an AABB-based collision detection mechanism.
+                </p>
 
                 <div class="feature-highlight">
-                    <h3 class="feature-title">✨ 核心亮点：基于着色器反射 (Shader Reflection) 的动态管线</h3>
-                    <p style="color: var(--text-muted);">
+                    <h3 class="feature-title lang-zh">✨ 核心亮点：基于着色器反射 (Shader Reflection) 的动态管线</h3>
+                    <h3 class="feature-title lang-en">✨ Core Highlight: Shader Reflection-based Dynamic Pipeline</h3>
+                    <p style="color: var(--text-muted);" class="lang-zh">
                         为了解决频繁修改着色器代码带来的繁琐绑定问题，引擎实现了在运行时动态读取并编译 Shader 源码。通过深入整合 DirectX 的 Shader Reflection
                         系统，引擎能够自动分析着色器资源需求（如顶点和计算着色器中的 Structured Buffer 被正确识别并绑定），实现管线状态对象 (PSO)
                         与资源的自动化映射与绑定，极大提升了渲染架构的灵活性与开发效率。
+                    </p>
+                    <p style="color: var(--text-muted);" class="lang-en">
+                        To resolve the tedious binding workflow caused by frequent modifications of shader code, the engine implements dynamic reading and compilation of shader source code at runtime. By deeply integrating the DirectX Shader Reflection system, the engine automatically analyzes shader resource requirements (such as correctly identifying and binding Structured Buffers in vertex and compute shaders) to achieve automated mapping and binding between Pipeline State Objects (PSOs) and resources. This dramatically improves the flexibility and development efficiency of the rendering architecture.
                     </p>
                 </div>
 
@@ -277,46 +359,59 @@
                             style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
                             onmouseover="this.style.transform='scale(1.02)'"
                             onmouseout="this.style.transform='scale(1)'">
-                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">整体场景展示</p>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-zh">整体场景展示</p>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-en">Overall Scene Showcase</p>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 10px;">
                         <img src="pic/Animation.png" alt="Animation System"
                             style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
                             onmouseover="this.style.transform='scale(1.02)'"
                             onmouseout="this.style.transform='scale(1)'">
-                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">动画系统</p>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-zh">动画系统</p>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-en">Animation System</p>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 10px;">
                         <img src="pic/ParticleSystem.png" alt="Particle System"
                             style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
                             onmouseover="this.style.transform='scale(1.02)'"
                             onmouseout="this.style.transform='scale(1)'">
-                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">粒子系统</p>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-zh">粒子系统</p>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-en">Particle System</p>
                     </div>
                     <a href="video/CGDemo.mp4" download class="placeholder"
                         style="border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4);">
                         <span class="placeholder-icon">▶️</span>
-                        <span style="color: #fff; font-weight: 600;">点击下载演示视频 (MP4)</span>
+                        <span style="color: #fff; font-weight: 600;" class="lang-zh">点击下载演示视频 (MP4)</span>
+                        <span style="color: #fff; font-weight: 600;" class="lang-en">Click to Download Demo Video (MP4)</span>
                     </a>
                     <a href="docs/CGDocs.pdf" target="_blank" class="placeholder"
                         style="border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4);">
                         <span class="placeholder-icon">📄</span>
-                        <span style="color: #fff; font-weight: 600;">点击查看 / 下载项目文档 (PDF)</span>
+                        <span style="color: #fff; font-weight: 600;" class="lang-zh">点击查看 / 下载项目文档 (PDF)</span>
+                        <span style="color: #fff; font-weight: 600;" class="lang-en">Click to View / Download Project Docs (PDF)</span>
                     </a>
                 </div>
             </section>
 
             <section class="project-section">
-                <h2 class="project-title">2. 离线路径追踪器</h2>
-                <p class="project-desc">
+                <h2 class="project-title lang-zh">2. 离线路径追踪器</h2>
+                <h2 class="project-title lang-en">2. Offline Path Tracer</h2>
+                <p class="project-desc lang-zh">
                     一个通过路径追踪模拟光线传输的渲染器。系统支持基于微表面理论的导体等材质，并采用启发式表面积 (SAH) 构建的 BVH 加速结构，支持重要性采样环境贴图，大幅提升了复杂场景的渲染效率。
+                </p>
+                <p class="project-desc lang-en">
+                    A renderer that simulates light transport using path tracing. The system supports materials like conductors based on microfacet theory, utilizes a BVH acceleration structure constructed with the Surface Area Heuristic (SAH), and supports environment map importance sampling, greatly enhancing rendering efficiency in complex scenes.
                 </p>
 
                 <div class="feature-highlight">
-                    <h3 class="feature-title">✨ 核心亮点：支持多种材质，使用 MIS (多重重要性采样)，使用 SAH (启发式表面积) 构建的BVH 加速结构</h3>
-                    <p style="color: var(--text-muted);">
+                    <h3 class="feature-title lang-zh">✨ 核心亮点：支持多种材质，使用 MIS (多重重要性采样)，使用 SAH (启发式表面积) 构建的 BVH 加速结构</h3>
+                    <h3 class="feature-title lang-en">✨ Core Highlight: Multi-Material Support, MIS (Multiple Importance Sampling), and SAH-built BVH Acceleration Structure</h3>
+                    <p style="color: var(--text-muted);" class="lang-zh">
                         为了解决直接光源采样与 BSDF 采样在不同粗糙度下的高方差问题，渲染器采用了多重重要性采样 (MIS) 技术，平衡两种采样策略的权重，从而降低了渲染过程中的噪点。此外，BVH 加速结构采用
                         SAH (Surface Area Heuristic) 算法进行分割，使得渲染复杂室内场景时的遍历开销降低。
+                    </p>
+                    <p style="color: var(--text-muted);" class="lang-en">
+                        To resolve the high-variance noise issues of direct light source sampling and BSDF sampling under different roughness levels, the renderer employs Multiple Importance Sampling (MIS) to balance the weights of both sampling strategies. Additionally, the BVH acceleration structure is partitioned using the Surface Area Heuristic (SAH) algorithm, reducing traversal overhead when rendering complex indoor scenes.
                     </p>
                 </div>
 
@@ -326,31 +421,40 @@
                             style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
                             onmouseover="this.style.transform='scale(1.02)'"
                             onmouseout="this.style.transform='scale(1)'">
-                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">Bathroom 场景</p>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-zh">Bathroom 场景</p>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-en">Bathroom Scene</p>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 10px;">
                         <img src="pic/MaterialsScene.png" alt="Materials Scene"
                             style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
                             onmouseover="this.style.transform='scale(1.02)'"
                             onmouseout="this.style.transform='scale(1)'">
-                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">
-                            材质展示场景</p>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-zh">材质展示场景</p>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-en">Material Showcase Scene</p>
                     </div>
                 </div>
             </section>
 
             <section class="project-section">
-                <h2 class="project-title">3. 基于 PBD 与 XPBD 的高性能布料模拟引擎</h2>
-                <p class="project-desc">
+                <h2 class="project-title lang-zh">3. 基于 PBD 与 XPBD 的高性能布料模拟引擎</h2>
+                <h2 class="project-title lang-en">3. High-Performance Cloth Simulation Engine based on PBD & XPBD</h2>
+                <p class="project-desc lang-zh">
                     开发了一款基于位置动力学 (Position Based Dynamics, PBD) 及扩展版本 (Extended PBD, XPBD)
                     的实时布料模拟系统。与传统的力学求解器（如隐式欧拉方法）相比，PBD 通过直接在位置层面迭代求解几何约束，确保了模拟过程的无条件稳定性，消除了由于大步长导致的系统崩溃问题。
                 </p>
+                <p class="project-desc lang-en">
+                    Developed a real-time cloth simulation system based on Position Based Dynamics (PBD) and its extended version (Extended PBD, XPBD). Compared with traditional mechanical solvers (like Implicit Euler), PBD guarantees unconditional stability during simulation by directly resolving geometric constraints on the position level, avoiding system explosions caused by large time steps.
+                </p>
 
                 <div class="feature-highlight">
-                    <h3 class="feature-title">🧵 核心亮点：XPBD 柔顺度控制</h3>
-                    <p style="color: var(--text-muted);">
+                    <h3 class="feature-title lang-zh">🧵 核心亮点：XPBD 柔顺度控制</h3>
+                    <h3 class="feature-title lang-en">🧵 Core Highlight: XPBD Compliance Control</h3>
+                    <p style="color: var(--text-muted);" class="lang-zh">
                         传统的 PBD 算法中，材质的刚度（Stiffness）会受到迭代次数和时间步长的严重影响，导致难以进行物理精准的参数调节。项目中引入了 XPBD
                         算法，通过将物理刚度转化为柔顺度（Compliance）并引入拉格朗日乘子，实现了刚度与迭代次数的完全解耦。
+                    </p>
+                    <p style="color: var(--text-muted);" class="lang-en">
+                        In traditional PBD, material stiffness is tightly coupled with the number of iterations and time steps, rendering physical parameter tuning difficult. This project introduces the XPBD algorithm, which converts physical stiffness into compliance and introduces Lagrange multipliers, achieving complete decoupling of stiffness from the iteration count.
                     </p>
                 </div>
 
@@ -358,7 +462,8 @@
                     <video controls
                         style="width: 100%; height: 100%; min-height: 250px; border-radius: 12px; background-color: #000; object-fit: cover;">
                         <source src="video/clothDemo.mp4" type="video/mp4">
-                        您的浏览器不支持视频播放。
+                        <span class="lang-zh">您的浏览器不支持视频播放。</span>
+                        <span class="lang-en">Your browser does not support video playback.</span>
                     </video>
                     <!-- 暂无项目文档 -->
                     <!--
@@ -371,33 +476,45 @@
             </section>
 
             <section class="project-section">
-                <h2 class="project-title">4. 软件光栅化器加速</h2>
-                <p class="project-desc">
-                    针对现代多核 CPU 进行深度优化的软件光栅化器。通过引入 AVX2 SIMD 指令集、数据结构重构 (SoA)以及基于工作窃取 (Work-Stealing) 算法的 Tile-based
+                <h2 class="project-title lang-zh">4. 软件光栅化器加速</h2>
+                <h2 class="project-title lang-en">4. Software Rasterizer Acceleration</h2>
+                <p class="project-desc lang-zh">
+                    针对现代多核 CPU 进行深度优化的软件光栅化器。通过引入 AVX2 SIMD 指令集、数据结构重构 (SoA)以及基于工作窃取 (Work-Stealing) 算法 of Tile-based
                     多线程渲染架构，大幅突破了内存带宽和同步开销的瓶颈。
+                </p>
+                <p class="project-desc lang-en">
+                    A software rasterizer deeply optimized for modern multi-core CPUs. By incorporating the AVX2 SIMD instruction set, Structure of Arrays (SoA) layout restructuring, and a tile-based multi-threaded rendering architecture driven by a work-stealing algorithm, it successfully breaks through memory bandwidth and synchronization overhead bottlenecks.
                 </p>
 
                 <div class="feature-highlight">
-                    <h3 class="feature-title">🚀 核心亮点：AVX2 向量化极限加速</h3>
-                    <p style="color: var(--text-muted);">
+                    <h3 class="feature-title lang-zh">🚀 核心亮点：AVX2 向量化极限加速</h3>
+                    <h3 class="feature-title lang-en">🚀 Core Highlight: AVX2 Vectorization Extreme Speedup</h3>
+                    <p style="color: var(--text-muted);" class="lang-zh">
                         光栅化的最大瓶颈在于逐像素的重心坐标计算和着色。通过将帧缓冲区数据格式对齐为 32-bit 的 RGBA，我利用 256-bit 的 AVX2 寄存器在单条指令中同时处理并写入 8
                         个像素的边缘函数与深度测试。
                     </p>
+                    <p style="color: var(--text-muted);" class="lang-en">
+                        The primary bottleneck of rasterization lies in per-pixel barycentric coordinate calculation and shading. By aligning the frame buffer data format to 32-bit RGBA, I leverage 256-bit AVX2 registers to compute and write the edge functions and depth tests of 8 pixels simultaneously in a single instruction.
+                    </p>
 
                     <div class="apple-speedup-container">
-                        <div class="speedup-header">最高 6 倍的渲染性能提升</div>
-                        <p style="color: var(--text-muted); margin-bottom: 20px;">轻量级场景下，向量化计算带来的指令级并行收益。</p>
+                        <div class="speedup-header lang-zh">最高 6 倍的渲染性能提升</div>
+                        <div class="speedup-header lang-en">Up to 6x Rendering Performance Boost</div>
+                        <p style="color: var(--text-muted); margin-bottom: 20px;" class="lang-zh">轻量级场景下，向量化计算带来的指令级并行收益。</p>
+                        <p style="color: var(--text-muted); margin-bottom: 20px;" class="lang-en">Instruction-level parallelism gains from vectorized computation in lightweight scenes.</p>
 
                         <div class="bar-group">
                             <div class="bar-row">
-                                <div class="bar-label">基准实现 (标量)</div>
+                                <div class="bar-label lang-zh">基准实现 (标量)</div>
+                                <div class="bar-label lang-en">Baseline (Scalar)</div>
                                 <div class="bar-track">
                                     <div class="bar-fill baseline"></div>
                                 </div>
                                 <div class="bar-value">1.0x</div>
                             </div>
                             <div class="bar-row">
-                                <div class="bar-label">AVX2 SIMD 加速</div>
+                                <div class="bar-label lang-zh">AVX2 SIMD 加速</div>
+                                <div class="bar-label lang-en">AVX2 SIMD Acceleration</div>
                                 <div class="bar-track">
                                     <div class="bar-fill avx"></div>
                                 </div>
@@ -418,14 +535,16 @@
                     <a href="docs/GEDocs.pdf" target="_blank" class="placeholder"
                         style="border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4);">
                         <span class="placeholder-icon">📄</span>
-                        <span style="color: #fff; font-weight: 600;">点击查看 / 下载项目文档 (PDF)</span>
+                        <span style="color: #fff; font-weight: 600;" class="lang-zh">点击查看 / 下载项目文档 (PDF)</span>
+                        <span style="color: #fff; font-weight: 600;" class="lang-en">Click to View / Download Project Docs (PDF)</span>
                     </a>
                 </div>
             </section>
         </div>
 
         <footer>
-            <p>© 2026 Daian Song. All rights reserved.</p>
+            <p class="lang-zh">© 2026 宋岱桉. 保留所有权利。</p>
+            <p class="lang-en">© 2026 Daian Song. All rights reserved.</p>
         </footer>
     </div>
 
@@ -583,6 +702,42 @@
         window.addEventListener('scroll', () => {
             targetScroll = window.scrollY;
         });
+
+        function setLanguage(lang) {
+            document.documentElement.setAttribute('lang', lang);
+            
+            // Update active states of switcher buttons
+            const btnZh = document.getElementById('lang-btn-zh');
+            const btnEn = document.getElementById('lang-btn-en');
+            if (lang === 'en') {
+                if (btnZh) btnZh.classList.remove('active');
+                if (btnEn) btnEn.classList.add('active');
+                document.title = "Daian Song | Game Engine & Graphics Programming Portfolio";
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) {
+                    metaDesc.setAttribute('content', 
+                        "Portfolio of Daian Song, a Game Engineering and Graphics Programming specialist. Featuring projects in DirectX 12, Software Rasterization, Physics-based Animation (PBD/XPBD), and Ray Tracing."
+                    );
+                }
+            } else {
+                if (btnZh) btnZh.classList.add('active');
+                if (btnEn) btnEn.classList.remove('active');
+                document.title = "宋岱桉 | 游戏引擎与图形编程作品集";
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) {
+                    metaDesc.setAttribute('content', 
+                        "宋岱桉的游戏引擎与图形编程作品集。展示了 DirectX 12 渲染引擎、物理布料模拟 (PBD/XPBD)、离线路径追踪器、软件光栅化器加速等项目。"
+                    );
+                }
+            }
+            
+            // Persist the selection
+            localStorage.setItem('preferred-lang', lang);
+        }
+
+        // Initialize language from localStorage or default to 'zh-CN'
+        const initialLang = localStorage.getItem('preferred-lang') || 'zh-CN';
+        setLanguage(initialLang);
 
         // Initialize
         resize();
