@@ -331,17 +331,16 @@
         <div class="container">
             <section class="project-section">
                 <h2 class="project-title lang-zh">1. 基于 DirectX 12 开发的第一人称 3D 追逐游戏</h2>
-                <h2 class="project-title lang-en">1. DirectX 12 Rendering Engine & 3D Chase Game</h2>
+                <h2 class="project-title lang-en">1. First-Person 3D Chase Game Developed with DirectX 12</h2>
                 <p class="project-desc lang-zh">
                     一款基于 DirectX 12 开发的第一人称 3D 追逐游戏。展示了多个实时渲染技术的综合应用，
                     包括数据驱动的加载管线、实例化渲染、计算着色器驱动的粒子系统、骨骼动画的淡入淡出效果，以及基于 AABB 的碰撞检测机制。
                 </p>
                 <p class="project-desc lang-en">
                     A first-person 3D chase game developed with DirectX 12, showcasing the integrated application of
-                    multiple real-time rendering techniques. The game features a data-driven loading pipeline, instanced
-                    rendering (for large-scale grass and trees), a compute-shader-driven particle system, a terrain
-                    system, dynamic skeletal animation with cross-fading, and an AABB-based collision detection
-                    mechanism.
+                    multiple real-time rendering techniques, including a data-driven loading pipeline, instanced
+                    rendering, a compute-shader-driven particle system, skeletal animation cross-fading, and an
+                    AABB-based collision detection mechanism.
                 </p>
 
                 <div class="feature-highlight">
@@ -353,13 +352,12 @@
                         与资源的自动化映射与绑定，提升了渲染架构的灵活性与开发效率。
                     </p>
                     <p style="color: var(--text-muted);" class="lang-en">
-                        To resolve the tedious binding workflow caused by frequent modifications of shader code, the
-                        engine implements dynamic reading and compilation of shader source code at runtime. By deeply
-                        integrating the DirectX Shader Reflection system, the engine automatically analyzes shader
-                        resource requirements (such as correctly identifying and binding Structured Buffers in vertex
-                        and compute shaders) to achieve automated mapping and binding between Pipeline State Objects
-                        (PSOs) and resources. This dramatically improves the flexibility and development efficiency of
-                        the rendering architecture.
+                        To resolve the tedious binding issues caused by frequent shader code modifications, the project
+                        implements runtime reading and compilation of shader source code. By utilizing the DirectX
+                        Shader Reflection system, the project automatically analyzes shader resource requirements (such
+                        as Structured Buffers in shaders), achieving automated mapping and binding between Pipeline
+                        State Objects (PSOs) and resources, improving the flexibility and development efficiency of the
+                        rendering architecture.
                     </p>
                 </div>
 
@@ -410,25 +408,26 @@
                     基于物理光线传输原理实现的离线路径追踪渲染器。系统支持微表面材质模型（如导体）及环境光照明，并借助空间加速结构与先进采样算法，实现了复杂室内场景的高效、低噪点渲染。
                 </p>
                 <p class="project-desc lang-en">
-                    A renderer that simulates light transport using path tracing. The system supports materials like
-                    conductors based on microfacet theory, utilizes a BVH acceleration structure constructed with the
-                    Surface Area Heuristic (SAH), and supports environment map importance sampling, greatly enhancing
-                    rendering efficiency in complex scenes.
+                    An offline path tracing renderer based on physical light transport principles. The system supports
+                    microfacet material models (such as conductors) and environment lighting, and leverages spatial
+                    acceleration structures and advanced sampling algorithms to achieve efficient, low-noise rendering
+                    of complex indoor scenes.
                 </p>
 
                 <div class="feature-highlight">
                     <h3 class="feature-title lang-zh">✨ 核心亮点：多重重要性采样、优化的 BVH 加速结构</h3>
-                    <h3 class="feature-title lang-en">✨ Core Highlight: Multi-Material Support, MIS (Multiple Importance
-                        Sampling), and SAH-built BVH Acceleration Structure</h3>
+                    <h3 class="feature-title lang-en">✨ Core Highlight: Multiple Importance Sampling & Optimized BVH
+                        Acceleration Structure</h3>
                     <p style="color: var(--text-muted);" class="lang-zh">
                         <strong>多重重要性采样</strong>：针对不同粗糙度材质下直接光源采样与 BSDF 采样方差过大的问题，引入 MIS 技术动态平衡两种策略的权重，显著降低了渲染噪点。
                         <br> <strong>优化的 BVH 加速结构</strong>：采用启发式表面积算法指导 BVH 空间分割，最大化射线求交效率，大幅降低了复杂场景下的遍历开销。
                     <p style="color: var(--text-muted);" class="lang-en">
-                        To resolve the high-variance noise issues of direct light source sampling and BSDF sampling
-                        under different roughness levels, the renderer employs Multiple Importance Sampling (MIS) to
-                        balance the weights of both sampling strategies. Additionally, the BVH acceleration structure is
-                        partitioned using the Surface Area Heuristic (SAH) algorithm, reducing traversal overhead when
-                        rendering complex indoor scenes.
+                        <strong>Multiple Importance Sampling</strong>: To address the high-variance issue of direct
+                        light source sampling and BSDF sampling under different roughness levels, MIS is introduced to
+                        dynamically balance the weights of both strategies, significantly reducing rendering noise.
+                        <br> <strong>Optimized BVH Acceleration Structure</strong>: Uses the Surface Area Heuristic
+                        (SAH) algorithm to guide BVH spatial partitioning, maximizing ray intersection efficiency and
+                        greatly reducing traversal overhead in complex scenes.
                     </p>
                 </div>
 
@@ -464,10 +463,10 @@
                     Survivors-like）游戏。系统设计了无限与有物理边界限制的两种地图模式，支持多种具有独特属性的敌人，并拥有基于得分动态触发的属性强化机制以及文本格式的存档读写系统。
                 </p>
                 <p class="project-desc lang-en">
-                    A C++ 2D Survivor-like game developed using a custom Canvas rendering library. It features a
-                    dual-level mechanic supporting both infinite-wrap and bounded map modes, diverse NPC behaviors
-                    (melee and shooter types), dynamic weapon upgrades and AOE damage triggered by player score, a
-                    custom text-based save/load system, and integrated real-time performance monitoring.
+                    A 2D Survivor-like (Vampire Survivors-like) game developed with C++ and a custom Canvas window
+                    rendering library. The system features two map modes—infinite and physically bounded—supports
+                    diverse enemies with unique attributes, and includes a score-based dynamically triggered attribute
+                    enhancement mechanism as well as a text-format save/load system.
                 </p>
 
                 <div class="feature-highlight">
@@ -481,13 +480,16 @@
                         行列区间，只遍历绘制视口范围内的贴图块，保持高帧率运行。
                     </p>
                     <p style="color: var(--text-muted);" class="lang-en">
-                        To efficiently target high-health enemies for player AOE attacks, a Quickselect partitioning
-                        algorithm is implemented within the custom `GrowableArray`, filtering the top-N targets in
-                        expected average O(N) time complexity. This is integrated with a two-pointer in-place filtering
-                        mechanism (`removeInactive`) that cleans up dead entities and reuses memory slots without
-                        triggering reallocations. Furthermore, the map renderer dynamically calculates the visible tile
-                        range using camera coordinates, culling off-screen drawing calls to maintain high frame rates in
-                        both seamless infinite wrapping and bounded level boundary modes.
+                        <strong>Quickselect-based AOE Target Filtering & In-place Memory Reclamation</strong>: To meet
+                        the need for quickly selecting the highest-health enemies for AOE skills, a Quickselect
+                        partitioning algorithm is implemented in a custom dynamic array, locating the top-N high-health
+                        targets in average O(N) time complexity. Combined with a two-pointer in-place compaction
+                        algorithm, dead entities are cleared and slots reused without memory reallocation, effectively
+                        avoiding the overhead of frequent heap memory allocation and deallocation.
+                        <br> <strong>Infinite Map Rendering & Viewport Tile Culling</strong>: The map system supports
+                        infinite map mode. The rendering system dynamically calculates the visible tile row and column
+                        range on the current screen using camera coordinates, only traversing and drawing tile blocks
+                        within the viewport, maintaining high frame rates.
                     </p>
                 </div>
             </section>
@@ -511,9 +513,9 @@
                         <br> <strong>Niagara 速度感视觉反馈</strong>：为了在空旷太空中提供速度感知，在相机周围以环形/圆盘状（Ring/Disc）产生 Niagara 粒子，并在粒子运动方向上根据飞船当前速度动态拉伸材质（Sprite Alignment），实现流线型速度线特效。
                     </p>
                     <p style="color: var(--text-muted);" class="lang-en">
-                        <strong>Multi-layered Earth & Atmospheric Scattering</strong>: Features realistic surface, atmosphere, and cloud layers. Utilizes the Fresnel equation to approximate volumetric gas thickness near the planetary edge, masked by a Lambertian term to smoothly transition light across the terminator.
-                        <br> <strong>Vacuum Lighting & Screen-space Lens Flare</strong>: Replicates high-contrast space environments using a sharp Directional Light with zero ambient sky light. Procedurally generates screen-space lens flares, calculating ghosting offsets along screen-center vectors and streak diffraction using cosine-power functions.
-                        <br> <strong>Niagara Velocity Visualization</strong>: Spawns ring-distributed Niagara particles around the player's camera to establish optical flow in vacuum space. Dynamically aligns and scales particles along their velocity vector, translating dots into speed streaks at higher velocities.
+                        <strong>Multi-layered Earth & Atmospheric Scattering</strong>: Composed of multi-layered structures including surface, atmosphere, and clouds. Utilizes the Fresnel equation to calculate edge volumetric thickness to approximate realistic atmospheric scattering, with sunlight direction masking to ensure smooth transitions across the terminator; clouds use Panner dynamic panning for a slow drift effect.
+                        <br> <strong>Vacuum Lighting & Lens Flare</strong>: Simulates a vacuum environment without Rayleigh scattering, configuring a minimal light source angle to produce hard shadows and removing scattered light sources such as Sky Light. Calculates Ghosting trajectories using screen-space coordinate offset vectors, combined with perpendicular UV cosine-power formulas to achieve main light spots and high-frequency diffraction grating effects.
+                        <br> <strong>Niagara Velocity Visual Feedback</strong>: To provide speed perception in open space, Niagara particles are spawned in a Ring/Disc formation around the camera, with particle materials dynamically stretched along the direction of motion based on the ship's current velocity (Sprite Alignment), creating streamlined speed line effects.
                     </p>
                 </div>
 
@@ -559,10 +561,10 @@
                     通过直接在位置层面迭代求解几何约束，确保了模拟过程的无条件稳定性，消除了由于大步长导致的系统崩溃问题。
                 </p>
                 <p class="project-desc lang-en">
-                    Developed a real-time cloth simulation system based on Position Based Dynamics (PBD) and its
-                    extended version (Extended PBD, XPBD). Compared with traditional mechanical solvers (like Implicit
-                    Euler), PBD guarantees unconditional stability during simulation by directly resolving geometric
-                    constraints on the position level, avoiding system explosions caused by large time steps.
+                    A real-time cloth simulation system based on PBD and its extended version XPBD. Compared with
+                    traditional mechanical solvers (such as Implicit Euler), PBD ensures unconditional stability during
+                    simulation by directly iterating geometric constraints at the position level, eliminating the
+                    system crash problem caused by large time steps.
                 </p>
 
                 <div class="feature-highlight">
@@ -572,10 +574,9 @@
                         项目中引入 XPBD 算法，通过将物理刚度转化为柔顺度并引入拉格朗日乘子，实现了刚度与迭代次数的完全解耦。
                     </p>
                     <p style="color: var(--text-muted);" class="lang-en">
-                        In traditional PBD, material stiffness is tightly coupled with the number of iterations and time
-                        steps, rendering physical parameter tuning difficult. This project introduces the XPBD
-                        algorithm, which converts physical stiffness into compliance and introduces Lagrange
-                        multipliers, achieving complete decoupling of stiffness from the iteration count.
+                        The project introduces the XPBD algorithm, which converts physical stiffness into compliance
+                        and introduces Lagrange multipliers, achieving complete decoupling of stiffness from the
+                        iteration count.
                     </p>
                 </div>
 
@@ -819,11 +820,11 @@
             if (lang === 'en') {
                 if (btnZh) btnZh.classList.remove('active');
                 if (btnEn) btnEn.classList.add('active');
-                document.title = "Daian Song | Game Engine & Graphics Programming Portfolio";
+                document.title = "Daian Song Game & Graphics Programming Portfolio";
                 const metaDesc = document.querySelector('meta[name="description"]');
                 if (metaDesc) {
                     metaDesc.setAttribute('content',
-                        "Portfolio of Daian Song, a Game Engineering and Graphics Programming specialist. Featuring projects in DirectX 12, Software Rasterization, Physics-based Animation (PBD/XPBD), and Ray Tracing."
+                        "Portfolio of Daian Song. Featuring projects in DirectX 12, Offline Path Tracing, C++ 2D Survivor-like Game, UE5 Space VFX, Physics-based Cloth Simulation (PBD/XPBD), and Software Rasterizer Acceleration."
                     );
                 }
             } else {
