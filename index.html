@@ -146,7 +146,8 @@
 
         /* Apple-style AVX2 Speedup Graph */
         .apple-speedup-container {
-            margin-top: 30px;
+            margin: 30px auto 0;
+            max-width: 60%;
             padding: 30px;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(12px);
@@ -392,10 +393,12 @@
             margin: 25px 0 30px;
         }
 
-        .project-info-col,
+        .project-info-col {
+            flex: 5;
+        }
+
         .project-media-col {
-            flex: 1;
-            width: 50%;
+            flex: 5;
         }
 
         .project-info-col .project-desc:first-child {
@@ -404,13 +407,7 @@
 
         @media (max-width: 992px) {
             .project-split-layout {
-                flex-direction: column;
-                gap: 25px;
-            }
-
-            .project-info-col,
-            .project-media-col {
-                width: 100%;
+                gap: 20px;
             }
         }
     </style>
@@ -654,45 +651,45 @@
             <section class="project-section">
                 <h2 class="project-title lang-zh">4. Unreal Engine 5 空间环境与特效系统</h2>
                 <h2 class="project-title lang-en">4. Unreal Engine 5 Space Environment & VFX System</h2>
-                <p class="project-desc lang-zh">
-                    为 Unreal Engine 5 太空竞速游戏《Skyfire》第七关设计并实现的高逼真度空间环境与视觉特效系统。系统包含多层地球天体模型、高对比度真空照明系统、镜头光晕（Lens
-                    Flare）效果，以及基于 Niagara 粒子系统的速度感流线特效。
-                </p>
-                <p class="project-desc lang-en">
-                    A high-fidelity space environment and visual effects system developed for Level 7 of the Unreal
-                    Engine 5 space racing game *Skyfire*. The system features a multi-layered planetary Earth model,
-                    high-contrast vacuum lighting, screen-space lens flares, and a Niagara-based velocity speed lines
-                    system for optical flow feedback.
-                </p>
+                <div class="project-split-layout">
+                    <div class="project-media-col">
+                        <div class="project-hero-banner" style="margin: 0;">
+                            <img src="pic/P4Demo.png" alt="Space Environment" class="zoomable-img"
+                                onclick="openLightbox(this)">
+                            <div class="hero-caption">
+                                <span class="lang-zh">太空环境实机画面</span>
+                                <span class="lang-en">In-game Space Environment Showcase</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="feature-highlight">
-                    <h3 class="feature-title lang-zh">✨ 核心亮点：多层地球大气散射、真空光照与镜头光晕、Niagara 速度线</h3>
-                    <h3 class="feature-title lang-en">✨ Core Highlight: Multi-layered Earth Atmospheric Scattering,
-                        Vacuum Lighting & Lens Flare, Niagara Speed Lines</h3>
-                    <p style="color: var(--text-muted);" class="lang-zh">
-                        <strong>多层地球天体与大气散射</strong>：由地表、大气和云层多层结构组成。利用 Fresnel 公式计算边缘 volumetric
-                        厚度来逼近真实的大气散射，并使用太阳光照方向进行遮罩，保证了 terminator（晨昏线）的平滑过渡；云层采用 Panner 动态平移实现缓慢漂移效果。
-                        <br> <strong>真空光照与镜头光晕（Lens Flare）</strong>：模拟无 Rayleigh 散射的真空环境，配置极小光源角以呈现硬阴影，剔除 Sky Light
-                        等散射光源；利用屏幕空间坐标偏移向量计算 Ghosting 轨迹，结合垂直 UV 余弦幂次公式实现了主光斑及高频衍射光栅。
-                        <br> <strong>Niagara 速度感视觉反馈</strong>：为了在空旷太空中提供速度感知，在相机周围以环形/圆盘状（Ring/Disc）产生 Niagara
-                        粒子，并在粒子运动方向上根据飞船当前速度动态拉伸材质（Sprite Alignment），实现流线型速度线特效。
-                    </p>
-                    <p style="color: var(--text-muted);" class="lang-en">
-                        <strong>Multi-layered Earth & Atmospheric Scattering</strong>: Composed of multi-layered
-                        structures including surface, atmosphere, and clouds. Utilizes the Fresnel equation to calculate
-                        edge volumetric thickness to approximate realistic atmospheric scattering, with sunlight
-                        direction masking to ensure smooth transitions across the terminator; clouds use Panner dynamic
-                        panning for a slow drift effect.
-                        <br> <strong>Vacuum Lighting & Lens Flare</strong>: Simulates a vacuum environment without
-                        Rayleigh scattering, configuring a minimal light source angle to produce hard shadows and
-                        removing scattered light sources such as Sky Light. Calculates Ghosting trajectories using
-                        screen-space coordinate offset vectors, combined with perpendicular UV cosine-power formulas to
-                        achieve main light spots and high-frequency diffraction grating effects.
-                        <br> <strong>Niagara Velocity Visual Feedback</strong>: To provide speed perception in open
-                        space, Niagara particles are spawned in a Ring/Disc formation around the camera, with particle
-                        materials dynamically stretched along the direction of motion based on the ship's current
-                        velocity (Sprite Alignment), creating streamlined speed line effects.
-                    </p>
+                    <div class="project-info-col">
+                        <p class="project-desc lang-zh">
+                            为太空竞速游戏《Skyfire》第七关设计并实现的高逼真度空间环境与视觉特效系统。系统包含多层地球天体模型、高对比度真空照明系统、镜头光晕效果，以及基于 Niagara 粒子系统的速度感流线特效。
+                        </p>
+                        <p class="project-desc lang-en">
+                            A high-fidelity space environment and visual effects system developed for Level 7 of the space
+                            racing game *Skyfire*. The system features a multi-layered planetary Earth model,
+                            high-contrast vacuum lighting, screen-space lens flares, and a Niagara-based velocity speed lines
+                            system for optical flow feedback.
+                        </p>
+
+                        <div class="feature-highlight">
+                            <h3 class="feature-title lang-zh">✨ 核心亮点：多层地球大气散射</h3>
+                            <h3 class="feature-title lang-en">✨ Core Highlight: Multi-layered Earth Atmospheric Scattering</h3>
+                            <p style="color: var(--text-muted);" class="lang-zh">
+                                由地表、大气和云层多层结构组成。利用 Fresnel 公式计算边缘厚度来逼近真实的大气散射，并使用太阳光照方向进行遮罩，保证了晨昏线的平滑过渡；云层采用 Panner
+                                动态平移实现缓慢漂移效果。
+                            </p>
+                            <p style="color: var(--text-muted);" class="lang-en">
+                                Composed of multi-layered structures including surface, atmosphere, and clouds. Utilizes the
+                                Fresnel equation to calculate edge thickness to approximate realistic atmospheric scattering,
+                                with sunlight
+                                direction masking to ensure smooth transitions across the terminator; clouds use Panner dynamic
+                                panning for a slow drift effect.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="media-grid">
@@ -732,93 +729,114 @@
             <section class="project-section">
                 <h2 class="project-title lang-zh">5. 基于 PBD 与 XPBD 的高性能布料模拟引擎</h2>
                 <h2 class="project-title lang-en">5. High-Performance Cloth Simulation Engine based on PBD & XPBD</h2>
-                <p class="project-desc lang-zh">
-                    一款基于 PBD 及扩展版本 XPBD 的实时布料模拟系统。与传统的力学求解器（如隐式欧拉方法）相比，PBD
-                    通过直接在位置层面迭代求解几何约束，确保了模拟过程的无条件稳定性，消除了由于大步长导致的系统崩溃问题。
-                </p>
-                <p class="project-desc lang-en">
-                    A real-time cloth simulation system based on PBD and its extended version XPBD. Compared with
-                    traditional mechanical solvers (such as Implicit Euler), PBD ensures unconditional stability during
-                    simulation by directly iterating geometric constraints at the position level, eliminating the
-                    system crash problem caused by large time steps.
-                </p>
+                <div class="project-split-layout">
+                    <div class="project-info-col">
+                        <p class="project-desc lang-zh">
+                            一款基于 PBD 及扩展版本 XPBD 的实时布料模拟系统。与传统的力学求解器（如隐式欧拉方法）相比，PBD
+                            通过直接在位置层面迭代求解几何约束，确保了模拟过程的无条件稳定性，消除了由于大步长导致的系统崩溃问题。
+                        </p>
+                        <p class="project-desc lang-en">
+                            A real-time cloth simulation system based on PBD and its extended version XPBD. Compared with
+                            traditional mechanical solvers (such as Implicit Euler), PBD ensures unconditional stability during
+                            simulation by directly iterating geometric constraints at the position level, eliminating the
+                            system crash problem caused by large time steps.
+                        </p>
 
-                <div class="feature-highlight">
-                    <h3 class="feature-title lang-zh">✨ 核心亮点：XPBD 柔顺度控制</h3>
-                    <h3 class="feature-title lang-en">✨ Core Highlight: XPBD Compliance Control</h3>
-                    <p style="color: var(--text-muted);" class="lang-zh">
-                        项目中引入 XPBD 算法，通过将物理刚度转化为柔顺度并引入拉格朗日乘子，实现了刚度与迭代次数的完全解耦。
-                    </p>
-                    <p style="color: var(--text-muted);" class="lang-en">
-                        The project introduces the XPBD algorithm, which converts physical stiffness into compliance
-                        and introduces Lagrange multipliers, achieving complete decoupling of stiffness from the
-                        iteration count.
-                    </p>
-                </div>
+                        <div class="feature-highlight">
+                            <h3 class="feature-title lang-zh">✨ 核心亮点：XPBD 柔顺度控制</h3>
+                            <h3 class="feature-title lang-en">✨ Core Highlight: XPBD Compliance Control</h3>
+                            <p style="color: var(--text-muted);" class="lang-zh">
+                                项目中引入 XPBD 算法，通过将物理刚度转化为柔顺度并引入拉格朗日乘子，实现了刚度与迭代次数的完全解耦。
+                            </p>
+                            <p style="color: var(--text-muted);" class="lang-en">
+                                The project introduces the XPBD algorithm, which converts physical stiffness into compliance
+                                and introduces Lagrange multipliers, achieving complete decoupling of stiffness from the
+                                iteration count.
+                            </p>
+                        </div>
+                    </div>
 
-                <div class="media-grid">
-                    <video controls
-                        style="width: 100%; height: 100%; min-height: 250px; border-radius: 12px; background-color: #000; object-fit: cover;">
-                        <source src="video/clothDemo.mp4" type="video/mp4">
-                        <span class="lang-zh">您的浏览器不支持视频播放。</span>
-                        <span class="lang-en">Your browser does not support video playback.</span>
-                    </video>
+                    <div class="project-media-col">
+                        <div class="project-hero-banner" style="margin: 0; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; overflow: hidden;">
+                            <video controls
+                                style="width: 100%; display: block; background-color: #000; object-fit: cover; min-height: 250px; border: none;">
+                                <source src="video/clothDemo.mp4" type="video/mp4">
+                                <span class="lang-zh">您的浏览器不支持视频播放。</span>
+                                <span class="lang-en">Your browser does not support video playback.</span>
+                            </video>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <section class="project-section">
                 <h2 class="project-title lang-zh">6. 软件光栅化器加速</h2>
                 <h2 class="project-title lang-en">6. Software Rasterizer Acceleration</h2>
-                <p class="project-desc lang-zh">
-                    针对现代多核 CPU 进行深度优化的软件光栅化器。通过引入 AVX2 SIMD 指令集、数据结构重构 (SoA)以及基于工作窃取 (Work-Stealing) 算法 of Tile-based
-                    多线程渲染架构，大幅突破了内存带宽和同步开销的瓶颈。
-                </p>
-                <p class="project-desc lang-en">
-                    A software rasterizer deeply optimized for modern multi-core CPUs. By incorporating the AVX2 SIMD
-                    instruction set, Structure of Arrays (SoA) layout restructuring, and a tile-based multi-threaded
-                    rendering architecture driven by a work-stealing algorithm, it successfully breaks through memory
-                    bandwidth and synchronization overhead bottlenecks.
-                </p>
+                <div class="project-split-layout">
+                    <div class="project-media-col">
+                        <div class="project-hero-banner" style="margin: 0; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; overflow: hidden;">
+                            <video controls
+                                style="width: 100%; display: block; background-color: #000; object-fit: cover; min-height: 250px; border: none;">
+                                <source src="video/OptDemo.mp4" type="video/mp4">
+                                <span class="lang-zh">您的浏览器不支持视频播放。</span>
+                                <span class="lang-en">Your browser does not support video playback.</span>
+                            </video>
+                        </div>
+                    </div>
 
-                <div class="feature-highlight">
-                    <h3 class="feature-title lang-zh">✨ 核心亮点：AVX2 向量化极限加速</h3>
-                    <h3 class="feature-title lang-en">✨ Core Highlight: AVX2 Vectorization Extreme Speedup</h3>
-                    <p style="color: var(--text-muted);" class="lang-zh">
-                        光栅化的最大瓶颈在于逐像素的重心坐标计算和着色。通过将帧缓冲区数据格式对齐为 32-bit 的 RGBA，我利用 256-bit 的 AVX2 寄存器在单条指令中同时处理并写入 8
-                        个像素的边缘函数与深度测试。
-                    </p>
-                    <p style="color: var(--text-muted);" class="lang-en">
-                        The primary bottleneck of rasterization lies in per-pixel barycentric coordinate calculation and
-                        shading. By aligning the frame buffer data format to 32-bit RGBA, I leverage 256-bit AVX2
-                        registers to compute and write the edge functions and depth tests of 8 pixels simultaneously in
-                        a single instruction.
-                    </p>
+                    <div class="project-info-col">
+                        <p class="project-desc lang-zh">
+                            针对现代多核 CPU 进行深度优化的软件光栅化器。通过引入 AVX2 SIMD 指令集、数据结构重构 (SoA)以及基于工作窃取 (Work-Stealing) 算法 of Tile-based
+                            多线程渲染架构，大幅突破了内存带宽和同步开销的瓶颈。
+                        </p>
+                        <p class="project-desc lang-en">
+                            A software rasterizer deeply optimized for modern multi-core CPUs. By incorporating the AVX2 SIMD
+                            instruction set, Structure of Arrays (SoA) layout restructuring, and a tile-based multi-threaded
+                            rendering architecture driven by a work-stealing algorithm, it successfully breaks through memory
+                            bandwidth and synchronization overhead bottlenecks.
+                        </p>
 
-                    <div class="apple-speedup-container">
-                        <div class="speedup-header lang-zh">最高 6 倍的渲染性能提升</div>
-                        <div class="speedup-header lang-en">Up to 6x Rendering Performance Boost</div>
-                        <p style="color: var(--text-muted); margin-bottom: 20px;" class="lang-zh">
-                            轻量级场景下，向量化计算带来的指令级并行收益。</p>
-                        <p style="color: var(--text-muted); margin-bottom: 20px;" class="lang-en">Instruction-level
-                            parallelism gains from vectorized computation in lightweight scenes.</p>
+                        <div class="feature-highlight">
+                            <h3 class="feature-title lang-zh">✨ 核心亮点：AVX2 向量化极限加速</h3>
+                            <h3 class="feature-title lang-en">✨ Core Highlight: AVX2 Vectorization Extreme Speedup</h3>
+                            <p style="color: var(--text-muted);" class="lang-zh">
+                                光栅化的最大瓶颈在于逐像素的重心坐标计算和着色。通过将帧缓冲区数据格式对齐为 32-bit 的 RGBA，我利用 256-bit 的 AVX2 寄存器在单条指令中同时处理并写入 8
+                                个像素的边缘函数与深度测试。
+                            </p>
+                            <p style="color: var(--text-muted);" class="lang-en">
+                                The primary bottleneck of rasterization lies in per-pixel barycentric coordinate calculation and
+                                shading. By aligning the frame buffer data format to 32-bit RGBA, I leverage 256-bit AVX2
+                                registers to compute and write the edge functions and depth tests of 8 pixels simultaneously in
+                                a single instruction.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-                        <div class="bar-group">
-                            <div class="bar-row">
-                                <div class="bar-label lang-zh">基准实现 (标量)</div>
-                                <div class="bar-label lang-en">Baseline (Scalar)</div>
-                                <div class="bar-track">
-                                    <div class="bar-fill baseline"></div>
-                                </div>
-                                <div class="bar-value">1.0x</div>
+                <div class="apple-speedup-container">
+                    <div class="speedup-header lang-zh">最高 6 倍的渲染性能提升</div>
+                    <div class="speedup-header lang-en">Up to 6x Rendering Performance Boost</div>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;" class="lang-zh">
+                        轻量级场景下，向量化计算带来的指令级并行收益。</p>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;" class="lang-en">Instruction-level
+                        parallelism gains from vectorized computation in lightweight scenes.</p>
+
+                    <div class="bar-group">
+                        <div class="bar-row">
+                            <div class="bar-label lang-zh">基准实现 (标量)</div>
+                            <div class="bar-label lang-en">Baseline (Scalar)</div>
+                            <div class="bar-track">
+                                <div class="bar-fill baseline"></div>
                             </div>
-                            <div class="bar-row">
-                                <div class="bar-label lang-zh">AVX2 SIMD 加速</div>
-                                <div class="bar-label lang-en">AVX2 SIMD Acceleration</div>
-                                <div class="bar-track">
-                                    <div class="bar-fill avx"></div>
-                                </div>
-                                <div class="bar-value" style="color: #ff7e5f;">6.0x</div>
+                            <div class="bar-value">1.0x</div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label lang-zh">AVX2 SIMD 加速</div>
+                            <div class="bar-label lang-en">AVX2 SIMD Acceleration</div>
+                            <div class="bar-track">
+                                <div class="bar-fill avx"></div>
                             </div>
+                            <div class="bar-value" style="color: #ff7e5f;">6.0x</div>
                         </div>
                     </div>
                 </div>
