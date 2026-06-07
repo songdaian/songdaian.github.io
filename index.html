@@ -308,6 +308,111 @@
         .lang-btn:hover:not(.active) {
             color: rgba(255, 255, 255, 0.8);
         }
+
+        /* Lightbox Overlay */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
+            cursor: zoom-out;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-overlay img {
+            max-width: 92vw;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+            transform: scale(0.85);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .lightbox-overlay.active img {
+            transform: scale(1);
+        }
+
+        /* Zoomable image cursor */
+        .zoomable-img {
+            cursor: zoom-in;
+        }
+
+        /* Project hero banner: full-width showcase image */
+        .project-hero-banner {
+            position: relative;
+            width: 100%;
+            margin: 25px 0 30px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .project-hero-banner img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-hero-banner:hover img {
+            transform: scale(1.015);
+        }
+
+        .project-hero-banner .hero-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 25px 18px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.75);
+            pointer-events: none;
+        }
+
+        /* 50/50 Split Layout */
+        .project-split-layout {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin: 25px 0 30px;
+        }
+
+        .project-info-col,
+        .project-media-col {
+            flex: 1;
+            width: 50%;
+        }
+
+        .project-info-col .project-desc:first-child {
+            margin-top: 0;
+        }
+
+        @media (max-width: 992px) {
+            .project-split-layout {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .project-info-col,
+            .project-media-col {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -332,48 +437,61 @@
             <section class="project-section">
                 <h2 class="project-title lang-zh">1. 基于 DirectX 12 开发的第一人称 3D 追逐游戏</h2>
                 <h2 class="project-title lang-en">1. First-Person 3D Chase Game Developed with DirectX 12</h2>
-                <p class="project-desc lang-zh">
-                    一款基于 DirectX 12 开发的第一人称 3D 追逐游戏。展示了多个实时渲染技术的综合应用，
-                    包括数据驱动的加载管线、实例化渲染、计算着色器驱动的粒子系统、骨骼动画的淡入淡出效果，以及基于 AABB 的碰撞检测机制。
-                </p>
-                <p class="project-desc lang-en">
-                    A first-person 3D chase game developed with DirectX 12, showcasing the integrated application of
-                    multiple real-time rendering techniques, including a data-driven loading pipeline, instanced
-                    rendering, a compute-shader-driven particle system, skeletal animation cross-fading, and an
-                    AABB-based collision detection mechanism.
-                </p>
+                <div class="project-split-layout">
+                    <div class="project-info-col">
+                        <p class="project-desc lang-zh">
+                            一款基于 DirectX 12 开发的第一人称 3D 追逐游戏。展示了多个实时渲染技术的综合应用，
+                            包括数据驱动的加载管线、实例化渲染、计算着色器驱动的粒子系统、骨骼动画的淡入淡出效果，以及基于 AABB 的碰撞检测机制。
+                        </p>
+                        <p class="project-desc lang-en">
+                            A first-person 3D chase game developed with DirectX 12, showcasing the integrated
+                            application of
+                            multiple real-time rendering techniques, including a data-driven loading pipeline, instanced
+                            rendering, a compute-shader-driven particle system, skeletal animation cross-fading, and an
+                            AABB-based collision detection mechanism.
+                        </p>
 
-                <div class="feature-highlight">
-                    <h3 class="feature-title lang-zh">✨ 核心亮点：基于着色器反射的动态管线</h3>
-                    <h3 class="feature-title lang-en">✨ Core Highlight: Shader Reflection-based Dynamic Pipeline</h3>
-                    <p style="color: var(--text-muted);" class="lang-zh">
-                        为了解决频繁修改着色器代码带来的繁琐绑定问题，项目实现了在运行时读取并编译着色器源码的功能。通过使用 DirectX 的着色器反射
-                        系统，项目能够自动分析着色器资源需求（如着色器中的 Structured Buffer），实现管线状态对象 (PSO)
-                        与资源的自动化映射与绑定，提升了渲染架构的灵活性与开发效率。
-                    </p>
-                    <p style="color: var(--text-muted);" class="lang-en">
-                        To resolve the tedious binding issues caused by frequent shader code modifications, the project
-                        implements runtime reading and compilation of shader source code. By utilizing the DirectX
-                        Shader Reflection system, the project automatically analyzes shader resource requirements (such
-                        as Structured Buffers in shaders), achieving automated mapping and binding between Pipeline
-                        State Objects (PSOs) and resources, improving the flexibility and development efficiency of the
-                        rendering architecture.
-                    </p>
+                        <div class="feature-highlight">
+                            <h3 class="feature-title lang-zh">✨ 核心亮点：基于着色器反射的动态管线</h3>
+                            <h3 class="feature-title lang-en">✨ Core Highlight: Shader Reflection-based Dynamic Pipeline
+                            </h3>
+                            <p style="color: var(--text-muted);" class="lang-zh">
+                                为了解决频繁修改着色器代码带来的繁琐绑定问题，项目实现了在运行时读取并编译着色器源码的功能。通过使用 DirectX 的着色器反射
+                                系统，项目能够自动分析着色器资源需求（如着色器中的 Structured Buffer），实现管线状态对象 (PSO)
+                                与资源的自动化映射与绑定，提升了渲染架构的灵活性与开发效率。
+                            </p>
+                            <p style="color: var(--text-muted);" class="lang-en">
+                                To resolve the tedious binding issues caused by frequent shader code modifications, the
+                                project
+                                implements runtime reading and compilation of shader source code. By utilizing the
+                                DirectX
+                                Shader Reflection system, the project automatically analyzes shader resource
+                                requirements (such
+                                as Structured Buffers in shaders), achieving automated mapping and binding between
+                                Pipeline
+                                State Objects (PSOs) and resources, improving the flexibility and development efficiency
+                                of the
+                                rendering architecture.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="project-media-col">
+                        <div class="project-hero-banner" style="margin: 0;">
+                            <img src="pic/Scene.png" alt="Overall Scene" class="zoomable-img"
+                                onclick="openLightbox(this)">
+                            <div class="hero-caption">
+                                <span class="lang-zh">整体场景展示</span>
+                                <span class="lang-en">Overall Scene Showcase</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="media-grid">
                     <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <img src="pic/Scene.png" alt="Overall Scene"
-                            style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
-                            onmouseover="this.style.transform='scale(1.02)'"
-                            onmouseout="this.style.transform='scale(1)'">
-                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-zh">
-                            整体场景展示</p>
-                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-en">
-                            Overall Scene Showcase</p>
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <img src="pic/Animation.png" alt="Animation System"
+                        <img src="pic/Animation.png" alt="Animation System" class="zoomable-img"
+                            onclick="openLightbox(this)"
                             style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
                             onmouseover="this.style.transform='scale(1.02)'"
                             onmouseout="this.style.transform='scale(1)'">
@@ -383,7 +501,8 @@
                             Animation System</p>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <img src="pic/ParticleSystem.png" alt="Particle System"
+                        <img src="pic/ParticleSystem.png" alt="Particle System" class="zoomable-img"
+                            onclick="openLightbox(this)"
                             style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
                             onmouseover="this.style.transform='scale(1.02)'"
                             onmouseout="this.style.transform='scale(1)'">
@@ -392,12 +511,16 @@
                         <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-en">
                             Particle System</p>
                     </div>
-                    <video controls
-                        style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background-color: #000; object-fit: cover; min-height: 250px;">
-                        <source src="video/CGDemo.mp4" type="video/mp4">
-                        <span class="lang-zh">您的浏览器不支持视频播放。</span>
-                        <span class="lang-en">Your browser does not support video playback.</span>
-                    </video>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <video controls
+                            style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background-color: #000; object-fit: cover; min-height: 250px;">
+                            <source src="video/CGDemo.mp4" type="video/mp4">
+                            <span class="lang-zh">您的浏览器不支持视频播放。</span>
+                            <span class="lang-en">Your browser does not support video playback.</span>
+                        </video>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-zh">演示视频</p>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-en">Demo Video</p>
+                    </div>
                 </div>
             </section>
 
@@ -433,7 +556,7 @@
 
                 <div class="media-grid">
                     <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <img src="pic/BRdn.png" alt="Bathroom Scene"
+                        <img src="pic/BRdn.png" alt="Bathroom Scene" class="zoomable-img" onclick="openLightbox(this)"
                             style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
                             onmouseover="this.style.transform='scale(1.02)'"
                             onmouseout="this.style.transform='scale(1)'">
@@ -443,7 +566,8 @@
                             Bathroom Scene</p>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <img src="pic/MaterialsScene.png" alt="Materials Scene"
+                        <img src="pic/MaterialsScene.png" alt="Materials Scene" class="zoomable-img"
+                            onclick="openLightbox(this)"
                             style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
                             onmouseover="this.style.transform='scale(1.02)'"
                             onmouseout="this.style.transform='scale(1)'">
@@ -498,30 +622,49 @@
                 <h2 class="project-title lang-zh">4. Unreal Engine 5 空间环境与特效系统</h2>
                 <h2 class="project-title lang-en">4. Unreal Engine 5 Space Environment & VFX System</h2>
                 <p class="project-desc lang-zh">
-                    为 Unreal Engine 5 太空竞速游戏《Skyfire》第七关设计并实现的高逼真度空间环境与视觉特效系统。系统包含多层地球天体模型、高对比度真空照明系统、镜头光晕（Lens Flare）效果，以及基于 Niagara 粒子系统的速度感流线特效。
+                    为 Unreal Engine 5 太空竞速游戏《Skyfire》第七关设计并实现的高逼真度空间环境与视觉特效系统。系统包含多层地球天体模型、高对比度真空照明系统、镜头光晕（Lens
+                    Flare）效果，以及基于 Niagara 粒子系统的速度感流线特效。
                 </p>
                 <p class="project-desc lang-en">
-                    A high-fidelity space environment and visual effects system developed for Level 7 of the Unreal Engine 5 space racing game *Skyfire*. The system features a multi-layered planetary Earth model, high-contrast vacuum lighting, screen-space lens flares, and a Niagara-based velocity speed lines system for optical flow feedback.
+                    A high-fidelity space environment and visual effects system developed for Level 7 of the Unreal
+                    Engine 5 space racing game *Skyfire*. The system features a multi-layered planetary Earth model,
+                    high-contrast vacuum lighting, screen-space lens flares, and a Niagara-based velocity speed lines
+                    system for optical flow feedback.
                 </p>
 
                 <div class="feature-highlight">
                     <h3 class="feature-title lang-zh">✨ 核心亮点：多层地球大气散射、真空光照与镜头光晕、Niagara 速度线</h3>
-                    <h3 class="feature-title lang-en">✨ Core Highlight: Multi-layered Earth Atmospheric Scattering, Vacuum Lighting & Lens Flare, Niagara Speed Lines</h3>
+                    <h3 class="feature-title lang-en">✨ Core Highlight: Multi-layered Earth Atmospheric Scattering,
+                        Vacuum Lighting & Lens Flare, Niagara Speed Lines</h3>
                     <p style="color: var(--text-muted);" class="lang-zh">
-                        <strong>多层地球天体与大气散射</strong>：由地表、大气和云层多层结构组成。利用 Fresnel 公式计算边缘 volumetric 厚度来逼近真实的大气散射，并使用太阳光照方向进行遮罩，保证了 terminator（晨昏线）的平滑过渡；云层采用 Panner 动态平移实现缓慢漂移效果。
-                        <br> <strong>真空光照与镜头光晕（Lens Flare）</strong>：模拟无 Rayleigh 散射的真空环境，配置极小光源角以呈现硬阴影，剔除 Sky Light 等散射光源；利用屏幕空间坐标偏移向量计算 Ghosting 轨迹，结合垂直 UV 余弦幂次公式实现了主光斑及高频衍射光栅。
-                        <br> <strong>Niagara 速度感视觉反馈</strong>：为了在空旷太空中提供速度感知，在相机周围以环形/圆盘状（Ring/Disc）产生 Niagara 粒子，并在粒子运动方向上根据飞船当前速度动态拉伸材质（Sprite Alignment），实现流线型速度线特效。
+                        <strong>多层地球天体与大气散射</strong>：由地表、大气和云层多层结构组成。利用 Fresnel 公式计算边缘 volumetric
+                        厚度来逼近真实的大气散射，并使用太阳光照方向进行遮罩，保证了 terminator（晨昏线）的平滑过渡；云层采用 Panner 动态平移实现缓慢漂移效果。
+                        <br> <strong>真空光照与镜头光晕（Lens Flare）</strong>：模拟无 Rayleigh 散射的真空环境，配置极小光源角以呈现硬阴影，剔除 Sky Light
+                        等散射光源；利用屏幕空间坐标偏移向量计算 Ghosting 轨迹，结合垂直 UV 余弦幂次公式实现了主光斑及高频衍射光栅。
+                        <br> <strong>Niagara 速度感视觉反馈</strong>：为了在空旷太空中提供速度感知，在相机周围以环形/圆盘状（Ring/Disc）产生 Niagara
+                        粒子，并在粒子运动方向上根据飞船当前速度动态拉伸材质（Sprite Alignment），实现流线型速度线特效。
                     </p>
                     <p style="color: var(--text-muted);" class="lang-en">
-                        <strong>Multi-layered Earth & Atmospheric Scattering</strong>: Composed of multi-layered structures including surface, atmosphere, and clouds. Utilizes the Fresnel equation to calculate edge volumetric thickness to approximate realistic atmospheric scattering, with sunlight direction masking to ensure smooth transitions across the terminator; clouds use Panner dynamic panning for a slow drift effect.
-                        <br> <strong>Vacuum Lighting & Lens Flare</strong>: Simulates a vacuum environment without Rayleigh scattering, configuring a minimal light source angle to produce hard shadows and removing scattered light sources such as Sky Light. Calculates Ghosting trajectories using screen-space coordinate offset vectors, combined with perpendicular UV cosine-power formulas to achieve main light spots and high-frequency diffraction grating effects.
-                        <br> <strong>Niagara Velocity Visual Feedback</strong>: To provide speed perception in open space, Niagara particles are spawned in a Ring/Disc formation around the camera, with particle materials dynamically stretched along the direction of motion based on the ship's current velocity (Sprite Alignment), creating streamlined speed line effects.
+                        <strong>Multi-layered Earth & Atmospheric Scattering</strong>: Composed of multi-layered
+                        structures including surface, atmosphere, and clouds. Utilizes the Fresnel equation to calculate
+                        edge volumetric thickness to approximate realistic atmospheric scattering, with sunlight
+                        direction masking to ensure smooth transitions across the terminator; clouds use Panner dynamic
+                        panning for a slow drift effect.
+                        <br> <strong>Vacuum Lighting & Lens Flare</strong>: Simulates a vacuum environment without
+                        Rayleigh scattering, configuring a minimal light source angle to produce hard shadows and
+                        removing scattered light sources such as Sky Light. Calculates Ghosting trajectories using
+                        screen-space coordinate offset vectors, combined with perpendicular UV cosine-power formulas to
+                        achieve main light spots and high-frequency diffraction grating effects.
+                        <br> <strong>Niagara Velocity Visual Feedback</strong>: To provide speed perception in open
+                        space, Niagara particles are spawned in a Ring/Disc formation around the camera, with particle
+                        materials dynamically stretched along the direction of motion based on the ship's current
+                        velocity (Sprite Alignment), creating streamlined speed line effects.
                     </p>
                 </div>
 
                 <div class="media-grid">
                     <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <img src="pic/Earth.png" alt="Earth Model"
+                        <img src="pic/Earth.png" alt="Earth Model" class="zoomable-img" onclick="openLightbox(this)"
                             style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
                             onmouseover="this.style.transform='scale(1.02)'"
                             onmouseout="this.style.transform='scale(1)'">
@@ -531,7 +674,7 @@
                             Earth & Atmosphere Model</p>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <img src="pic/ghosting.png" alt="Lens Flare"
+                        <img src="pic/ghosting.png" alt="Lens Flare" class="zoomable-img" onclick="openLightbox(this)"
                             style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
                             onmouseover="this.style.transform='scale(1.02)'"
                             onmouseout="this.style.transform='scale(1)'">
@@ -541,7 +684,7 @@
                             Lens Flare & Ghosting Effects</p>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <img src="pic/VFX.png" alt="Niagara VFX"
+                        <img src="pic/VFX.png" alt="Niagara VFX" class="zoomable-img" onclick="openLightbox(this)"
                             style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
                             onmouseover="this.style.transform='scale(1.02)'"
                             onmouseout="this.style.transform='scale(1)'">
@@ -656,7 +799,32 @@
         </footer>
     </div>
 
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox-overlay" onclick="closeLightbox()">
+        <img src="" alt="Enlarged view" id="lightbox-img">
+    </div>
+
     <script>
+        // Lightbox functions
+        function openLightbox(imgEl) {
+            const overlay = document.getElementById('lightbox-overlay');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = imgEl.src;
+            lightboxImg.alt = imgEl.alt;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const overlay = document.getElementById('lightbox-overlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
         const canvas = document.getElementById('kaleidoscope');
         const ctx = canvas.getContext('2d');
         let width, height;
@@ -745,9 +913,9 @@
 
         // Generate huge 5000x5000 canvases once at load time
         const layers = [
-            { img: createOffscreenLayer(1200, palettes[0], 2500, 0.15), speed: 0.0007, scale: 1 },
-            { img: createOffscreenLayer(800, palettes[1], 2500, 0.1), speed: -0.0011, scale: 1.15 },
-            { img: createOffscreenLayer(500, palettes[2], 2500, 0.05), speed: 0.0016, scale: 1.35 }
+            { img: createOffscreenLayer(1200, palettes[0], 2500, 0.15), speed: 0.00005, scale: 1 },
+            { img: createOffscreenLayer(800, palettes[1], 2500, 0.1), speed: -0.0001, scale: 1.15 },
+            { img: createOffscreenLayer(500, palettes[2], 2500, 0.05), speed: 0.00015, scale: 1.35 }
         ];
 
         let targetScroll = window.scrollY || 0;
@@ -846,6 +1014,29 @@
         // Initialize language from localStorage or default to 'zh-CN'
         const initialLang = localStorage.getItem('preferred-lang') || 'zh-CN';
         setLanguage(initialLang);
+
+        // Set all video default volumes to 20%
+        document.querySelectorAll('video').forEach(video => {
+            video.volume = 0.05;
+        });
+
+        // Auto-pause videos when they scroll out of the viewport
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    const video = entry.target;
+                    if (!video.paused) {
+                        video.pause();
+                    }
+                }
+            });
+        }, {
+            threshold: 0.1 // Triggers when less than 10% of the video is visible
+        });
+
+        document.querySelectorAll('video').forEach(video => {
+            videoObserver.observe(video);
+        });
 
         // Initialize
         resize();
