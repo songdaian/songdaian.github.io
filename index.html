@@ -518,8 +518,10 @@
                             <span class="lang-zh">您的浏览器不支持视频播放。</span>
                             <span class="lang-en">Your browser does not support video playback.</span>
                         </video>
-                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-zh">演示视频</p>
-                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-en">Demo Video</p>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-zh">演示视频
+                        </p>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-en">Demo
+                            Video</p>
                     </div>
                 </div>
             </section>
@@ -527,45 +529,62 @@
             <section class="project-section">
                 <h2 class="project-title lang-zh">2. 离线路径追踪器</h2>
                 <h2 class="project-title lang-en">2. Offline Path Tracer</h2>
-                <p class="project-desc lang-zh">
-                    基于物理光线传输原理实现的离线路径追踪渲染器。系统支持微表面材质模型（如导体）及环境光照明，并借助空间加速结构与先进采样算法，实现了复杂室内场景的高效、低噪点渲染。
-                </p>
-                <p class="project-desc lang-en">
-                    An offline path tracing renderer based on physical light transport principles. The system supports
-                    microfacet material models (such as conductors) and environment lighting, and leverages spatial
-                    acceleration structures and advanced sampling algorithms to achieve efficient, low-noise rendering
-                    of complex indoor scenes.
-                </p>
+                <div class="project-split-layout">
+                    <div class="project-media-col">
+                        <div class="project-hero-banner" style="margin: 0;">
+                            <img src="pic/BRdn.png" alt="Complex Indoor Scene" class="zoomable-img"
+                                onclick="openLightbox(this)">
+                            <div class="hero-caption">
+                                <span class="lang-zh">复杂室内场景渲染</span>
+                                <span class="lang-en">Complex Indoor Scene Rendering</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="feature-highlight">
-                    <h3 class="feature-title lang-zh">✨ 核心亮点：多重重要性采样、优化的 BVH 加速结构</h3>
-                    <h3 class="feature-title lang-en">✨ Core Highlight: Multiple Importance Sampling & Optimized BVH
-                        Acceleration Structure</h3>
-                    <p style="color: var(--text-muted);" class="lang-zh">
-                        <strong>多重重要性采样</strong>：针对不同粗糙度材质下直接光源采样与 BSDF 采样方差过大的问题，引入 MIS 技术动态平衡两种策略的权重，显著降低了渲染噪点。
-                        <br> <strong>优化的 BVH 加速结构</strong>：采用启发式表面积算法指导 BVH 空间分割，最大化射线求交效率，大幅降低了复杂场景下的遍历开销。
-                    <p style="color: var(--text-muted);" class="lang-en">
-                        <strong>Multiple Importance Sampling</strong>: To address the high-variance issue of direct
-                        light source sampling and BSDF sampling under different roughness levels, MIS is introduced to
-                        dynamically balance the weights of both strategies, significantly reducing rendering noise.
-                        <br> <strong>Optimized BVH Acceleration Structure</strong>: Uses the Surface Area Heuristic
-                        (SAH) algorithm to guide BVH spatial partitioning, maximizing ray intersection efficiency and
-                        greatly reducing traversal overhead in complex scenes.
-                    </p>
+                    <div class="project-info-col">
+                        <p class="project-desc lang-zh">
+                            基于物理光线传输原理实现的离线路径追踪渲染器。系统支持微表面材质模型（如导体）及环境光照明，并借助空间加速结构与先进采样算法，实现了复杂室内场景的高效、低噪点渲染。
+                        </p>
+                        <p class="project-desc lang-en">
+                            An offline path tracing renderer based on physical light transport principles. The system
+                            supports
+                            microfacet material models (such as conductors) and environment lighting, and leverages
+                            spatial
+                            acceleration structures and advanced sampling algorithms to achieve efficient, low-noise
+                            rendering
+                            of complex indoor scenes.
+                        </p>
+
+                        <div class="feature-highlight">
+                            <h3 class="feature-title lang-zh">✨ 核心亮点：多重重要性采样、优化的 BVH 加速结构</h3>
+                            <h3 class="feature-title lang-en">✨ Core Highlight: Multiple Importance Sampling & Optimized
+                                BVH
+                                Acceleration Structure</h3>
+                            <p style="color: var(--text-muted);" class="lang-zh">
+                                <strong>多重重要性采样</strong>：针对不同粗糙度材质下直接光源采样与 BSDF 采样方差过大的问题，引入 MIS
+                                技术动态平衡两种策略的权重，显著降低了渲染噪点。
+                                <br> <strong>优化的 BVH 加速结构</strong>：采用启发式表面积算法指导 BVH 空间分割，最大化射线求交效率，大幅降低了复杂场景下的遍历开销。
+                            </p>
+                            <p style="color: var(--text-muted);" class="lang-en">
+                                <strong>Multiple Importance Sampling</strong>: To address the high-variance issue of
+                                direct
+                                light source sampling and BSDF sampling under different roughness levels, MIS is
+                                introduced to
+                                dynamically balance the weights of both strategies, significantly reducing rendering
+                                noise.
+                                <br> <strong>Optimized BVH Acceleration Structure</strong>: Uses the Surface Area
+                                Heuristic
+                                (SAH) algorithm to guide BVH spatial partitioning, maximizing ray intersection
+                                efficiency and
+                                greatly reducing traversal overhead in complex scenes.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="media-grid">
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <img src="pic/BRdn.png" alt="Bathroom Scene" class="zoomable-img" onclick="openLightbox(this)"
-                            style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
-                            onmouseover="this.style.transform='scale(1.02)'"
-                            onmouseout="this.style.transform='scale(1)'">
-                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-zh">
-                            Bathroom 场景</p>
-                        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);" class="lang-en">
-                            Bathroom Scene</p>
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div
+                        style="display: flex; flex-direction: column; gap: 10px; max-width: 60%; margin: 0 auto; width: 100%;">
                         <img src="pic/MaterialsScene.png" alt="Materials Scene" class="zoomable-img"
                             onclick="openLightbox(this)"
                             style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease;"
@@ -582,39 +601,53 @@
             <section class="project-section">
                 <h2 class="project-title lang-zh">3. C++ 2D 类幸存者游戏</h2>
                 <h2 class="project-title lang-en">3. C++ 2D Survivor-like Game</h2>
-                <p class="project-desc lang-zh">
-                    基于 C++ 与自定义 Canvas 窗口渲染库实现的 2D 类幸存者（Vampire
-                    Survivors-like）游戏。系统设计了无限与有物理边界限制的两种地图模式，支持多种具有独特属性的敌人，并拥有基于得分动态触发的属性强化机制以及文本格式的存档读写系统。
-                </p>
-                <p class="project-desc lang-en">
-                    A 2D Survivor-like (Vampire Survivors-like) game developed with C++ and a custom Canvas window
-                    rendering library. The system features two map modes—infinite and physically bounded—supports
-                    diverse enemies with unique attributes, and includes a score-based dynamically triggered attribute
-                    enhancement mechanism as well as a text-format save/load system.
-                </p>
+                <div class="project-split-layout">
+                    <div class="project-info-col">
+                        <p class="project-desc lang-zh">
+                            基于 C++ 实现的 2D 类幸存者游戏。系统设计了无限与有物理边界限制的两种地图模式，支持多种具有独特属性的敌人，并拥有基于得分动态触发的属性强化机制以及文本格式的存档读写系统。
+                        </p>
+                        <p class="project-desc lang-en">
+                            A 2D Survivor-like game developed with C++. The system features two map modes—infinite and
+                            physically bounded—supports
+                            diverse enemies with unique attributes, and includes a score-based dynamically triggered
+                            attribute
+                            enhancement mechanism as well as a text-format save/load system.
+                        </p>
 
-                <div class="feature-highlight">
-                    <h3 class="feature-title lang-zh">✨ 核心亮点：快速选择算法筛选 AOE 目标、原位内存回收与视口贴图剔除</h3>
-                    <h3 class="feature-title lang-en">✨ Core Highlight: Quickselect-based AOE Targeting, In-place Memory
-                        Recycle & Viewport Tile Culling</h3>
-                    <p style="color: var(--text-muted);" class="lang-zh">
-                        <strong>快速选择的 AOE 目标筛选与原位内存回收</strong>：针对 AOE 技能需要快速挑选出当前血量最高怪物的需求，在自定义动态数组中实现了快速选择分区算法，以平均 O(N)
-                        时间复杂度定位前 N 个高血量目标；同时配合双指针原位整理算法，无需重新分配内存即可清除死亡实体并重用插槽，有效规避了频繁申请释放堆内存带来的开销。
-                        <br> <strong>无限地图渲染与视口贴图剔除</strong>：地图系统支持无限地图模式。渲染系统利用相机坐标动态计算当前屏幕上可见的 Tiles
-                        行列区间，只遍历绘制视口范围内的贴图块，保持高帧率运行。
-                    </p>
-                    <p style="color: var(--text-muted);" class="lang-en">
-                        <strong>Quickselect-based AOE Target Filtering & In-place Memory Reclamation</strong>: To meet
-                        the need for quickly selecting the highest-health enemies for AOE skills, a Quickselect
-                        partitioning algorithm is implemented in a custom dynamic array, locating the top-N high-health
-                        targets in average O(N) time complexity. Combined with a two-pointer in-place compaction
-                        algorithm, dead entities are cleared and slots reused without memory reallocation, effectively
-                        avoiding the overhead of frequent heap memory allocation and deallocation.
-                        <br> <strong>Infinite Map Rendering & Viewport Tile Culling</strong>: The map system supports
-                        infinite map mode. The rendering system dynamically calculates the visible tile row and column
-                        range on the current screen using camera coordinates, only traversing and drawing tile blocks
-                        within the viewport, maintaining high frame rates.
-                    </p>
+                        <div class="feature-highlight">
+                            <h3 class="feature-title lang-zh">✨ 核心亮点：快速选择算法筛选 AOE 目标与原位内存回收</h3>
+                            <h3 class="feature-title lang-en">✨ Core Highlight: Quickselect-based AOE Targeting,
+                                In-place Memory
+                                Recycle</h3>
+                            <p style="color: var(--text-muted);" class="lang-zh">
+                                <strong>快速选择的 AOE 目标筛选与原位内存回收</strong>：针对 AOE
+                                技能需要快速挑选出当前血量最高怪物的需求，在自定义动态数组中实现了快速选择分区算法，以平均 O(N)
+                                时间复杂度定位前 N 个高血量目标；同时配合双指针原位整理算法，无需重新分配内存即可清除死亡实体并重用插槽，有效规避了频繁申请释放堆内存带来的开销。
+                            </p>
+                            <p style="color: var(--text-muted);" class="lang-en">
+                                <strong>Quickselect-based AOE Target Filtering & In-place Memory Reclamation</strong>:
+                                To meet
+                                the need for quickly selecting the highest-health enemies for AOE skills, a Quickselect
+                                partitioning algorithm is implemented in a custom dynamic array, locating the top-N
+                                high-health
+                                targets in average O(N) time complexity. Combined with a two-pointer in-place compaction
+                                algorithm, dead entities are cleared and slots reused without memory reallocation,
+                                effectively
+                                avoiding the overhead of frequent heap memory allocation and deallocation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="project-media-col">
+                        <div class="project-hero-banner" style="margin: 0;">
+                            <img src="pic/P3Demo.png" alt="In-game Gameplay" class="zoomable-img"
+                                onclick="openLightbox(this)">
+                            <div class="hero-caption">
+                                <span class="lang-zh">游戏运行实机画面</span>
+                                <span class="lang-en">In-game Gameplay Showcase</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
